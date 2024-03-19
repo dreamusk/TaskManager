@@ -1,0 +1,96 @@
+*{
+    margin:0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif; /* Change the font family for the entire page */
+}
+h1{
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 2vw;
+    font-size: 2.3vw;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('./Bg.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+    height: 120vh;
+}
+.LogDetailContaine{
+    border: black solid 0.2vh;
+    margin-top: 2vw;
+    padding: 2vw;
+    width: 25vw;
+    border-radius: 5px;
+    background-color:rgb(144, 148, 176);
+    opacity: 0.97;
+}
+.LogDetail{
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    align-items: center;
+}
+.LogDetail input,select,label{
+    width: 15vw;
+    height: 2vw;
+    border-radius: 5px;
+    font-size: 1.3vw;
+    color: #989393;
+}
+button{
+    margin-top: 1vw;
+    padding: 0.65vw 1.5vw; /* Adjusted padding for better visual balance */
+    width: 7vw;
+    border-radius: 5px;
+    background-color: #312f33;
+    border: none;
+    font-size: 1.3vw;
+    color: #ffffff; /* Text color */
+    cursor: pointer; /* Add pointer cursor on hover */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for color changes */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+.btn1{
+    text-align: center;
+    
+}
+.button:hover {
+    background-color: #1a9521; /* Darker green on hover */
+}
+
+/* Gradient effect */
+.gradient-button {
+    background: linear-gradient(135deg, #00c853, #22b927);
+}
+
+/* Rounded corners */
+.rounded-button {
+    border-radius: 20px; /* Adjust the radius as desired */
+}
+label{
+color: rgb(255, 255, 255);
+}
+.frmd{
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+}
+label{
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    top: 10px;
+    width: 8vw;
+    background: #777474;
+}
+#c112{
+   margin-top: 1vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
