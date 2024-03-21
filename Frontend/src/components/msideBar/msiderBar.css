@@ -2,21 +2,24 @@
     margin: 0px;
     padding: 0px;
 }
-.Sidecontainer{
-    height: 100vh;
+.Msidecontainer{
+    height: 130vh;
     width: 19vw;
     background:rgb(141,146,175);
     display: flex;
     flex-direction: column;
     gap: 2vw;
     border: rgb(2, 2, 2) solid 1px;
+   
 
 }
-.Navcontainer{
+.MNavcontainer{
     height: 10vh;
-    width: 80vw;
+    width: 100vw;
     background-color:  rgb(50,49,56);
     border: rgb(2, 2, 2) solid 1px;
+   
+
 }
 .main{
     display: flex;
@@ -41,11 +44,11 @@
     justify-content: center;
     align-items: center;
 } */
-.sd13 img{
+.msd13 img{
     width: 8vw;
     height: 15vh;    
 }
-.sd13{ 
+.msd13{ 
     display: flex;
     font-weight: 800;
     align-items: center;
@@ -56,7 +59,7 @@
     border-left: 2px solid black;
 }
 
-.taskGiven1,.taskGiven2,.taskGiven3,.taskGiven4{
+.mtaskGiven1,.mtaskGiven2,.mtaskGiven3,.mtaskGiven4{
     display: flex;
     gap: 1vw;
     /* border: rgb(70, 70, 70) solid 2px; */
@@ -65,64 +68,64 @@
     border-left: 2px solid black;
     cursor: pointer;
 }
-.taskGiven1.clicked1 {
+.mtaskGiven1.clicked1 {
     background-color: lightgray;
     /* Change to the desired color */
 }
-.taskGiven1.clicked1 span{
+.mtaskGiven1.clicked1 span{
     color: rgb(1, 1, 1);
     /* Change to the desired color */
 }
-.taskGiven2.clicked2 {
+.mtaskGiven2.clicked2 {
     background-color: lightgray;
     /* Change to the desired color */
 }
-.taskGiven2.clicked2 span{
+.mtaskGiven2.clicked2 span{
     color: rgb(1, 1, 1);
     /* Change to the desired color */
 }
-.taskGiven3.clicked3 {
+.mtaskGiven3.clicked3 {
     background-color: lightgray;
     /* Change to the desired color */
 }
-.taskGiven3.clicked3 span{
+.mtaskGiven3.clicked3 span{
     color: rgb(1, 1, 1);
     /* Change to the desired color */
 }
-.taskGiven4.clicked4 {
+.mtaskGiven4.clicked4 {
     background-color: lightgray;
     /* Change to the desired color */
 }
-.taskGiven4.clicked4 span{
+.mtaskGiven4.clicked4 span{
     color: rgb(1, 1, 1);
     /* Change to the desired color */
 }
-.taskGivenImage img{
+.mtaskGivenImage img{
     width: 3vw;
     height: 5vh;
     margin-left: 0.4vw;
 }
-.taskGivenText{
+.mtaskGivenText{
 
     display: flex;
     justify-content: center;
     align-items: center;
   
 }
-.taskGivenText span{
+.mtaskGivenText span{
     color: rgb(227, 227, 227);
     font-size: 1.2vw;
     font-weight:900;
 }
-.Navcontainer{
+.MNavcontainer{
     display: flex;
     justify-content: end;
     
 }
-.navBarContent {
+.mnavBarContent {
     display: flex;
 }
-.navBarContent img{
+.mnavBarContent img{
     cursor: pointer;
     width: 3vw;
     height: 5vh;  
@@ -131,12 +134,12 @@
     margin-right: 2vw;
 
 }
-.but12{
+.mbut12{
     display: flex;
     gap: 1vw;
     margin-right: 1vw;
 }
-.but1 button{
+.mbut1 button{
 background-color: rgb(88, 89, 89);
 width: 6vw;
 height: 4vh;
@@ -147,90 +150,15 @@ justify-content: center;
 font-weight: 900;
 
 }
-.img1{
+.mimg1{
 margin-top: 0.96vw;
 }
-.nAndB{
+.mnAndB{
     display: flex;
     flex-direction: column;
 }
 a{
         text-decoration: none; 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* }
-AssignmentReturnedTwoToneIcon{
-    font-size: 3vw;
-}
-.sd12 img{
-    
-    width: 3vw;
-    height: 4vh;
-}
-.sd1 img{
-    margin-left: 0px;
-    width: 3vw;
-    height: 4vh;
-}
-.sd12img{
-margin-left: 0px;
-} */
 
 

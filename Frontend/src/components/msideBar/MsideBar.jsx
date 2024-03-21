@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./sidebar.css";
+import "./msiderBar.css";
 import employee from "../../assets/Employee.png";
 import tsagd from "../../assets/tsagd.png";
 import Logo from "../../assets/Logo.png";
@@ -11,7 +11,7 @@ import AssignmentReturnedTwoToneIcon from '@material-ui/icons/AssignmentReturned
 import AssignmentTurnedInTwoToneIcon from '@material-ui/icons/AssignmentTurnedInTwoTone';
 import QuestionAnswerTwoToneIcon from '@material-ui/icons/QuestionAnswerTwoTone';
 import EmojiObjectsTwoToneIcon from '@material-ui/icons/EmojiObjectsTwoTone';
-const SideBar = (props) => {
+const MsideBar = (props) => {
   const [clicked1, setClicked1] = useState(true);
   const [clicked2, setClicked2] = useState(false);
   const [clicked3, setClicked3] = useState(false);
@@ -48,76 +48,76 @@ const handleClick4 = () => {
 const {Item}=props;
   return (
     <div className="main">
-      <div className="Sidecontainer">
-        <div className="sd13">
+      <div className="Msidecontainer">
+        <div className="msd13">
           <img src={Logo}></img>
         </div>
-        <Link to={`/employee`}>
-        <div className={`taskGiven1 ${clicked1 ? 'clicked1' : ''}`} onClick={handleClick1}>
-          <div className="taskGivenImage">
+        <Link to={`/asignTask`}>
+        <div className={`mtaskGiven1 ${clicked1 ? 'clicked1' : ''}`} onClick={handleClick1}>
+          <div className="mtaskGivenImage">
           <img src={tsagd} ></img>
           </div>
-          <div className="taskGivenText">
+          <div className="mtaskGivenText">
          
             <span>
-              Task Alloted 
+             Asign Task
             </span>
        
           </div>
         </div>
         </Link>
-        <Link to={`/taskCompleted`}>
-        <div className={`taskGiven2 ${clicked2 ? 'clicked2' : ''}`} onClick={handleClick2}>
-          <div className="taskGivenImage">
+        <Link to={`/manager`}>
+        <div className={`mtaskGiven2 ${clicked2 ? 'clicked2' : ''}`} onClick={handleClick2}>
+          <div className="mtaskGivenImage">
           <img src={tdone} ></img>
           </div>
-          <div className="taskGivenText">
+          <div className="mtaskGivenText">
           
             <span>
-              Task Completed 
+            Completed Task
             </span>
             
           </div>
         </div>
         </Link >
-        <div className={`taskGiven3 ${clicked3 ? 'clicked3' : ''}`} onClick={handleClick3}>
-          <div className="taskGivenImage">
+        <div className={`mtaskGiven3 ${clicked3 ? 'clicked3' : ''}`} onClick={handleClick3}>
+          <div className="mtaskGivenImage">
           <img src={query} ></img>
           </div>
-          <div className="taskGivenText">
+          <div className="mtaskGivenText">
             <span>
-              Query
+            Task Review
             </span>
           </div>
         </div>
-        <div className={`taskGiven4 ${clicked4 ? 'clicked4' : ''}`} onClick={handleClick4}>
-          <div className="taskGivenImage" id="sugg">
+        <div className={`mtaskGiven4 ${clicked4 ? 'clicked4' : ''}`} onClick={handleClick4}>
+          <div className="mtaskGivenImage" id="sugg">
           <img src={suggestion} ></img>
           </div>
-          <div className="taskGivenText">
+          <div className="mtaskGivenText">
             <span>
-              Suggestion
+             Employee Performance
             </span>
           </div>
         </div>
       </div>
-      <div className="nAndB">
-      <div className="Navcontainer">
-        <div className="navBarContent">
-          <div className="img1">
+      <div className="mnAndB">
+      <div className="MNavcontainer">
+        <div className="mnavBarContent">
+          <div className="mimg1">
         <img src={employee} onClick={()=>setProfile(!profile)}></img>
 
           </div>
         {profile ?(<>
 
-        <div className="but12">
+        <div className="mbut12">
 
-        <div className="but1">
+        <div className="mbut1">
           
           <button>Profile</button>
          
           </div>
-          <div className="but1">
+          <div className="mbut1">
           
           <button>SignOut</button>
          
@@ -141,4 +141,4 @@ const {Item}=props;
   );
 };
 
-export default SideBar;
+export default MsideBar;

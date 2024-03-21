@@ -5,6 +5,10 @@ import Login from "./components/login/Login";
 import Protected from "./Protected";
 import Employee from "./components/employee/Employee";
 import SideBar from "./components/sidebar/SideBar";
+import TaskCompleted from "./components/taskCompleted/TaskCompleted";
+import Manager from "./components/manger/Manager";
+import MProtected from "./MProtected";
+import AsignTask from "./components/asignTask/AsignTask";
 function App() {
 
 
@@ -16,7 +20,10 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/notes" element={<Protected Component={Notes} />} />
       <Route path="/employee" element={<Protected Component={Employee} />} />
-      <Route path="/sidebar" element={<Protected Component={SideBar} />} />
+      <Route path="/taskCompleted" element={<Protected Component={TaskCompleted} />} />
+      <Route path="/manager" element={<MProtected Component={Manager} />} />
+      <Route path="/asignTask" element={<MProtected Component={AsignTask} />} />
+
       </Routes>
     </Router>
   )

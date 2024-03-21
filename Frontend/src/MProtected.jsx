@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 import SideBar from './components/sidebar/SideBar';
-const Protected = (props) => {
+import MsideBar from './components/msideBar/MsideBar';
+const MProtected = (props) => {
   const {Component}=props;
   const navigate=useNavigate();
   useEffect(()=>{
     let login=localStorage.getItem('login');
-    if(!login)navigate('/login')
+    let admin=localStorage.getItem('admin')
+    if(!login||!admin)navigate('/login')
   }) 
   return (
     <div>
-      <SideBar Item={Component}></SideBar>
+      <MsideBar Item={Component}></MsideBar>
       </div>
   )
 }
 
-export default Protected
+export default MProtected

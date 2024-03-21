@@ -1,28 +1,46 @@
 import React, { useEffect, useState } from "react";
-import "./employee.css";
+import { Link, useParams } from "react-router-dom";
 import { server } from "../../server";
-import done from '../../assets/done.png'
-const Employee = () => {
+
+const TaskCompleted = () => {
   const [tasks, setTasks] = useState([]);
-
+  const [error, setError] = useState(null); // State for error handling
+  const [empData,SetEmpData]=useState([])
+  
   const eId = localStorage.getItem("eId");
-
+  let temPdta=[];
   const getTasks = async () => {
     try {
       const response = await fetch(`${server}/api/task/getByid/${eId}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch tasks");
+      }
       const jsonData = await response.json();
-      const filteredTasks = jsonData.filter(task =>
-        task.employees.some(employee => employee.employee_id === eId)
+      const filteredTasks = jsonData.filter((task) =>
+        task.employees.some((employee) => (employee.isComplete === "1" && employee.employee_id===eId))
       );
+      console.log("tc",filteredTasks)
+      filteredTasks?.forEach((data)=>{
+        data?.employees?.forEach((emp)=>{
+            if(emp.employee_id===eId)
+            temPdta.push(emp)
+        })
+      })
+      console.log(temPdta)
       setTasks(filteredTasks);
+      SetEmpData(temPdta);
     } catch (error) {
-      console.log(error.message);
+      setError(error.message);
     }
   };
 
   useEffect(() => {
     getTasks();
   }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>; // Display error message
+  }
 
   return (
     <div className="Econtainer">
@@ -38,27 +56,22 @@ const Employee = () => {
             <th>Percenatge Assigned</th>
             <th>Start date</th>
             <th>DeadLine</th>
-            <th>Completed</th>
+            <th>Remark</th>
           </tr>
         </thead>
         <tbody>
           {tasks.map((task, index) => (
-            <tr key={index+1}>
-              <td>{index+1}</td>
+            <tr key={index + 1}>
+              <td>{index + 1}</td>
               <td>{task.task_id}</td>
               <td>{task.manager_id}</td>
               <td>{task.team}</td>
               <td>{task.description}</td>
-              <td>{task.employees[0].hours_alloted}</td>
-              <td>{task.employees[0].percentage_alloted}</td>
+                  <td>{empData[index]?.hours_alloted}</td>
+                  <td>{empData[index]?.percentage_alloted}</td>
               <td>{task.start_date.split("T")[0]}</td>
               <td>{task.deadline.split("T")[0]}</td>
-              <td> <div className="btn2">
-                <div className="imgic">
-                  <img src={done} alt="" />
-                </div>
-              </div>
-                </td>
+              <td>{empData[index]?.remark}</td>
             </tr>
           ))}
         </tbody>
@@ -67,5 +80,4 @@ const Employee = () => {
   );
 };
 
-export default Employee;
-
+export default TaskCompleted;
