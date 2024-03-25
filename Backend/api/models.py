@@ -57,7 +57,8 @@ class Task(models.Model):
     employees = models.JSONField(null=True, blank=True)
     start_date = models.DateTimeField(null=False, blank=False)
     deadline = models.DateTimeField(null=False, blank=False)
-    percentage_Completed= models.DecimalField(max_digits=5, decimal_places=2) 
+    percentage_Completed = models.DecimalField(max_digits=5, decimal_places=2, blank=True, default=0)
+    is_Completed = models.BooleanField(default=False)
     rating= models.CharField(max_length=20, null=True, blank=False)
     team = models.CharField(max_length=20, choices=TEAM_CHOICES, null=True, blank=True)
     def __str__(self):

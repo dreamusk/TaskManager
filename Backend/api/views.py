@@ -19,34 +19,92 @@ def welcome_pal(request):
 def taskAdd(request):
     data=request.data
     print('task.koofd')
-    task=Task.objects.create(
-        
+    tempTask=Task.objects.filter(task_id=data['task_id']).first()
+    if(tempTask):
+        for i in tempTask.employees:
+            if(i['employee_id']==data['employees'][0]['employee_id']):
+                message={"status":202}
+                return Response(message)
+        tempTask.employees.extend(data['employees'])
+        tempTask.save()
+        # tempTask.employees.extend(data['employees'])
+        return Response({"message": "Task Added"}, status=status.HTTP_201_CREATED)
+    else:
+        Task.objects.create(
         task_id=data['task_id'],
-        team=data['team'],
         description=data['description'],
-        manager_id=data['manager_id'],
         employees=data['employees'],
+        manager_id=data['manager_id'],
         start_date=data['start_date'],
         deadline=data['deadline'],
-        percentage_Completed=data['percentage_Completed']
-    )
+        team=data['team']
+        
+      )
     return Response({"message": "Task Added"}, status=status.HTTP_201_CREATED)
 #Getting the task based on Employee Id
 @api_view(['GET'])
 def getTaskByEid(request, eId):
     try:
-        # Filter the tasks based on employee_id
-        filtered_tasks = []
-        tasks = Task.objects.all()  # Assuming Task is the model representing tasks
-        for task in tasks:
-            for employee in task.employees:
-                if employee['employee_id'] == eId:
-                    filtered_tasks.append(task)
-                    break  # Once found, break the inner loop
-
-        # Serialize the filtered tasks
-        serializer = TasksSerializer(filtered_tasks, many=True)
+        # Retrieve tasks associated with the employee ID
+        print(eId)
+        tasks = Task.objects.all()
+        tempTasks=[]
+        for i in tasks:
+            for j in i.employees:
+                if(j['employee_id']==eId):
+                    tempTasks.append(i)
+        tasks=tempTasks
+        print(tasks)
+        # Serialize the tasks
+        serializer = TasksSerializer(tasks, many=True)
+        print(serializer.data)
         return Response(serializer.data)
+    
+    except Task.DoesNotExist:
+        return Response(status=404)
+@api_view(['GET'])
+def getTaskByMid(request, eId):
+    try:
+        # Retrieve tasks associated with the employee ID
+        print(eId)
+        tasks = Task.objects.filter(manager_id=eId)
+        # print(tasks)
+        # Serialize the tasks
+        serializer = TasksSerializer(tasks, many=True)
+        print(serializer.data)
+        return Response(serializer.data)
+    
+    except Task.DoesNotExist:
+        return Response(status=404)
+@api_view(['GET'])
+def getTaskByMidCompleted(request, eId):
+    try:
+        # Retrieve tasks associated with the employee ID
+        print(eId)
+        tasks = Task.objects.filter(manager_id=eId, is_Completed=True)
+
+        # print(tasks)
+        # Serialize the tasks
+        serializer = TasksSerializer(tasks, many=True)
+        print(serializer.data)
+        return Response(serializer.data)
+    
+    except Task.DoesNotExist:
+        return Response(status=404)
+    
+@api_view(['GET'])
+def getTaskByMidReview(request, eId):
+    try:
+        # Retrieve tasks associated with the employee ID
+        print(eId)
+        tasks = Task.objects.filter(manager_id=eId, is_Completed=False)
+
+        # print(tasks)
+        # Serialize the tasks
+        serializer = TasksSerializer(tasks, many=True)
+        print(serializer.data)
+        return Response(serializer.data)
+    
     except Task.DoesNotExist:
         return Response(status=404)
 #task Upadte of employee completed

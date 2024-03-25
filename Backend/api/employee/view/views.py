@@ -83,7 +83,7 @@ def employeeLogin(request):
 def getEmployeeByEid(request,eid):
     employee=Employee.objects.get(employee_id=eid)
     serialzer=EmployeeSerializer(employee,many=False)
-    return Response(serialzer.data)
+    return Response(serialzer.data);
 
 
 

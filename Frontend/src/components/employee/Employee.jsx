@@ -9,17 +9,21 @@ const Employee = () => {
 
   const getTasks = async () => {
     try {
-      const response = await fetch(`${server}/api/task/getByid/${eId}`);
+      const response = await fetch(`${server}/api/task/getByEid/${eId}`);
       const jsonData = await response.json();
-      const filteredTasks = jsonData.filter(task =>
-        task.employees.some(employee => employee.employee_id === eId)
-      );
-      setTasks(filteredTasks);
+      console.log({jsonData});
+  
+      if (Array.isArray(jsonData)) { // Check if jsonData is an array
+        let filteredTasks = jsonData.filter((task) => task.employees.some((employee) => employee.employee_id === eId));
+        setTasks(filteredTasks);
+      } else {
+        console.error("Data returned from the server is not in the expected format (not an array)");
+      }
     } catch (error) {
       console.log(error.message);
     }
-  };
-
+  }
+  
   useEffect(() => {
     getTasks();
   }, []);

@@ -14,10 +14,10 @@ function AsignTask() {
   const [deadline, setDeadline] = useState("");
   const [taskId, setTaskId] = useState("");
 
-  const handleRegister = async () => {
+  const handleSubmit = async () => {
     // Form validation checks
     const mId = localStorage.getItem('eId');
-    const employees = {
+    let employees = [{
       employee_id,
       name,
       percentage_alloted,
@@ -25,7 +25,7 @@ function AsignTask() {
       isComplete: "0",
       isRejected: "0",
       isWaited: "0"
-    };
+    }];
 
     const data = {
       task_id: taskId,
@@ -36,7 +36,7 @@ function AsignTask() {
       start_date: "2024-03-25T17:00:00Z",
       deadline
     };
-
+    
     try {
       const response = await fetch(`${server}/api/task/add/`, {
         method: "POST",
@@ -45,10 +45,25 @@ function AsignTask() {
         },
         body: JSON.stringify(data)
       });
-
-      if (response.ok) {
+      let datas=await response.json();
+      console.log(datas)
+      if(datas.status===202){
+        alert('Employee Assigned Task Already :(');
+        
+      }
+      else if (response.ok) {
+        alert('Employee Assigned Task Successfully :)');
+        setName('');
+        setEmployee_id('');
+        setDescription('');
+        setTeam('');
+        setAltPer('');
+        setHours_alloted('');
+        setDeadline('');
+        setTaskId('');
         console.log("Registered");
-      } else {
+      } 
+      else {
         throw new Error('Registration failed');
       }
     } catch (error) {
@@ -88,11 +103,13 @@ function AsignTask() {
           </div>
           <div className="frmd">
             <label>Description</label>
-            <input
-              placeholder="Description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
+           
+              <textarea
+                placeholder="Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+           
           </div>
           <div className="frmd">
             <label>Team</label>
@@ -108,7 +125,7 @@ function AsignTask() {
           <div className="frmd">
             <label>Alloted %</label>
             <input
-              placeholder="percentage_alloted"
+              placeholder="Percentage Alloted"
               value={percentage_alloted}
               onChange={(e) => setAltPer(e.target.value)}
             />
@@ -133,10 +150,7 @@ function AsignTask() {
         </div>
         <div id="c112">
           <div className="btn1">
-            <button onClick={handleRegister}>Register</button>
-          </div>
-          <div className="btn1">
-            <button>Submit</button>
+            <button onClick={handleSubmit}>Submit</button>
           </div>
         </div>
       </div>

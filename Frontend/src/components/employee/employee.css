@@ -2,6 +2,9 @@
   margin: 0px;
 padding: 0px;
 }
+body{
+  background-color: rgb(194, 194, 204);
+}
 /* styles.css */
 .Econtainer{
   margin-top: 2vh;
@@ -28,7 +31,7 @@ th, td {
 th {
   font-size:1vw;
   background-color:rgb(50,49,56);
-  color: white;
+  color: rgb(225, 225, 225);
   font-weight: 800;
 }
 
@@ -37,7 +40,7 @@ tr:nth-child(even) {
 }
 
 tr:nth-child(odd) {
-  background-color: white;
+  background-color: rgb(230, 228, 228);
 }
 .btn2 button{
 margin-top: 0.2vw;
@@ -53,7 +56,8 @@ font-weight: 550;
   width: 2vw;
   height: 3vh;
   cursor: pointer;
-  transition: transform 0.3s; /* Add transition effect */
+  transition: transform 0.3s;
+  filter: grayscale(100%); /* Add transition effect */
 }
 
 /* Apply styles to the container */
@@ -65,5 +69,6 @@ font-weight: 550;
 
 /* Move image up slightly on hover */
 .imgic img:hover {
-  transform: translateY(-2px); /* Move image up by 5 pixels */
+  /* transform: translateY(-2px);  */
+  filter: grayscale(0%);/* Move image up by 5 pixels */
 }

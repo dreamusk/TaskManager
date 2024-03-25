@@ -59,7 +59,7 @@
     border-left: 2px solid black;
 }
 
-.mtaskGiven1,.mtaskGiven2,.mtaskGiven3,.mtaskGiven4{
+.mtaskGiven1,.mtaskGiven2,.mtaskGiven3,.mtaskGiven4,.mtaskGiven5{
     display: flex;
     gap: 1vw;
     /* border: rgb(70, 70, 70) solid 2px; */
@@ -99,6 +99,12 @@
 .mtaskGiven4.clicked4 span{
     color: rgb(1, 1, 1);
     /* Change to the desired color */
+}
+.mtaskGiven5.clicked5 {
+    background-color: lightgray;
+}
+.mtaskGiven5.clicked5 span{
+    color: rgb(1, 1, 1);
 }
 .mtaskGivenImage img{
     width: 3vw;

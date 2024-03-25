@@ -20,6 +20,7 @@ h1{
     background-repeat: repeat;
     height: 120vh;
     margin-right: 4vw;
+
 }
 .LogDetailContaine{
     border: black solid 0.2vh;
@@ -36,7 +37,7 @@ h1{
     gap: 1vw;
     align-items: center;
 }
-.LogDetail input,select,label{
+.LogDetail input,select,label,textarea{
     width: 15vw;
     height: 2vw;
     border-radius: 5px;
@@ -94,4 +95,11 @@ label{
     display: flex;
     flex-direction: column;
     gap: 1vw;
+}
+input{
+    outline: none;
+    border: none;
+}
+textarea{
+    height: 10vh;
 }

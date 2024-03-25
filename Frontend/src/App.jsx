@@ -8,7 +8,12 @@ import SideBar from "./components/sidebar/SideBar";
 import TaskCompleted from "./components/taskCompleted/TaskCompleted";
 import Manager from "./components/manger/Manager";
 import MProtected from "./MProtected";
-import AsignTask from "./components/asignTask/AsignTask";
+import AsignTask from "./components/tasks/AsignTask";
+import AllTask from "./components/tasks/AllTask";
+import CompletedTask from "./components/tasks/CompletedTask";
+import ReviewTask from "./components/tasks/ReviewTask";
+import EmployeePerformance from "./components/manger/EmployeePerformance";
+import Dashboard from "./components/tasks/Dashboard";
 function App() {
 
 
@@ -23,6 +28,10 @@ function App() {
       <Route path="/taskCompleted" element={<Protected Component={TaskCompleted} />} />
       <Route path="/manager" element={<MProtected Component={Manager} />} />
       <Route path="/asignTask" element={<MProtected Component={AsignTask} />} />
+      <Route path="/allTask" element={<MProtected Component={AllTask} />} />
+      <Route path="/completedTask" element={<MProtected Component={CompletedTask} />} />
+      <Route path="/reviewTask" element={<MProtected Component={ReviewTask} />} />
+      <Route path="/employeePerformance" element={<MProtected Component={ReviewTask} />} />
 
       </Routes>
     </Router>
