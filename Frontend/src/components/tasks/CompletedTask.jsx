@@ -4,7 +4,7 @@ import view from "../../assets/view.png";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import InfoIcon from "@material-ui/icons/Info";
 import { makeStyles } from "@material-ui/core/styles";
-
+import './task.css'
 const CompletedTask = () => {
   const [tasks, setTasks] = useState([]);
   const [focusedIndex, setFocusedIndex] = useState(null); // Track the index of the hovered icon
@@ -27,7 +27,7 @@ const CompletedTask = () => {
 
   return (
     <div
-      className="Econtainer"
+      className="Econtainerr"
       style={{
         display: "flex",
         justifyContent: "center",

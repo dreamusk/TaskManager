@@ -26,7 +26,7 @@ function App() {
       <Route path="/notes" element={<Protected Component={Notes} />} />
       <Route path="/employee" element={<Protected Component={Employee} />} />
       <Route path="/taskCompleted" element={<Protected Component={TaskCompleted} />} />
-      <Route path="/manager" element={<MProtected Component={Manager} />} />
+      <Route path="/manager" element={<MProtected Component={AllTask} />} />
       <Route path="/asignTask" element={<MProtected Component={AsignTask} />} />
       <Route path="/allTask" element={<MProtected Component={AllTask} />} />
       <Route path="/completedTask" element={<MProtected Component={CompletedTask} />} />

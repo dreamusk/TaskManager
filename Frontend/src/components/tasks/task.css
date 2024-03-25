@@ -1,0 +1,76 @@
+*{
+    margin: 0px;
+  padding: 0px;
+  }
+  body{
+    background-color: rgb(194, 194, 204);
+    width: 0px;
+  }
+  /* styles.css */
+  .Econtainerr{
+    margin-top: 2vh;
+   margin-left: 1vw;
+    width: 78vw;
+   
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    border:solid rgb(152, 149, 149) 1px;
+  }
+  
+  th, td {
+    font-size:1vw;
+    padding: 10px;
+    text-align: center;
+    font-weight: 550;
+    color: #000000;
+  }
+  
+  th {
+    font-size:1vw;
+    background-color:rgb(50,49,56);
+    color: rgb(225, 225, 225);
+    font-weight: 800;
+  }
+  
+  tr:nth-child(even) {
+    background-color:rgb(141,146,175);
+  }
+  
+  tr:nth-child(odd) {
+    background-color: rgb(230, 228, 228);
+  }
+  .btn2 button{
+  margin-top: 0.2vw;
+  height: 5vh;
+  width: 6vw;
+  font-size:1vw;
+  font-weight: 550;
+  }
+  
+  /* Apply styles to the image */
+  /* Apply styles to the image */
+  .imgic img {
+    width: 2vw;
+    height: 3vh;
+    cursor: pointer;
+    transition: transform 0.3s;
+    filter: grayscale(100%); /* Add transition effect */
+  }
+  
+  /* Apply styles to the container */
+  .imgic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Move image up slightly on hover */
+  .imgic img:hover {
+    /* transform: translateY(-2px);  */
+    filter: grayscale(0%);/* Move image up by 5 pixels */
+  }
+  
