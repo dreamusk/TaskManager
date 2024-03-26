@@ -13,7 +13,7 @@ import AllTask from "./components/tasks/AllTask";
 import CompletedTask from "./components/tasks/CompletedTask";
 import ReviewTask from "./components/tasks/ReviewTask";
 import EmployeePerformance from "./components/manger/EmployeePerformance";
-import Dashboard from "./components/tasks/Dashboard";
+import Dashboard from "./components/tasks/dashboard/Dashboard";
 function App() {
 
 
@@ -31,7 +31,7 @@ function App() {
       <Route path="/allTask" element={<MProtected Component={AllTask} />} />
       <Route path="/completedTask" element={<MProtected Component={CompletedTask} />} />
       <Route path="/reviewTask" element={<MProtected Component={ReviewTask} />} />
-      <Route path="/employeePerformance" element={<MProtected Component={ReviewTask} />} />
+      <Route path="/employeePerformance" element={<MProtected Component={Dashboard} />} />
 
       </Routes>
     </Router>

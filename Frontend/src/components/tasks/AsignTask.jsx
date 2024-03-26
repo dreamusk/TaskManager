@@ -36,7 +36,7 @@ function AsignTask() {
       start_date: "2024-03-25T17:00:00Z",
       deadline
     };
-    
+    console.log(data)
     try {
       const response = await fetch(`${server}/api/task/add/`, {
         method: "POST",

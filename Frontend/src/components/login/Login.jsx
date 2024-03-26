@@ -29,6 +29,7 @@ function Login() {
       temporaryEmployee = await temporaryEmployee.json();
       if (temporaryEmployee.is_admin) localStorage.setItem("admin", true);
       localStorage.setItem("login", true);
+      localStorage.setItem("eId", employee_id);
 
       navigate("/");
     }
