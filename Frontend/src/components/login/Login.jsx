@@ -30,8 +30,9 @@ function Login() {
       if (temporaryEmployee.is_admin) localStorage.setItem("admin", true);
       localStorage.setItem("login", true);
       localStorage.setItem("eId", employee_id);
-
-      navigate("/");
+      if(temporaryEmployee.is_admin) navigate("/manager");
+      else
+      navigate("/employee");
     }
   };
   return (

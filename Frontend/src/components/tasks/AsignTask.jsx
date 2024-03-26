@@ -73,7 +73,7 @@ function AsignTask() {
   };
 
   return (
-    <div className="container">
+    <div className="containerr">
       <div className="LogDetailContaine">
         <h1>Task</h1>
         <div className="LogDetail">
