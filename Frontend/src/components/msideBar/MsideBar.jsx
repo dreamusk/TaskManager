@@ -127,7 +127,7 @@ const {Item}=props;
           </div>
           <div className="mtaskGivenText">
             <span>
-             Employee Performance
+             Performance
             </span>
           </div>
         </div></Link>
