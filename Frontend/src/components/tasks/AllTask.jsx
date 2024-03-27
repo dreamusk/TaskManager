@@ -4,11 +4,29 @@ import view from "../../assets/view.png";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import InfoIcon from "@material-ui/icons/Info";
 import { makeStyles } from "@material-ui/core/styles";
+import './asignTask.css'
+import Modal from "react-modal";
+const customStyles = {
+  content: {
+    top: '30%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
 
+// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
+// Modal.setAppElement('#yourAppElement');
 const AllTask = () => {
+  let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
   const [tasks, setTasks] = useState([]);
-  const [focusedIndex, setFocusedIndex] = useState(null); // Track the index of the hovered icon
-
+  const [focusedIndex, setFocusedIndex] = useState(null);
+  const [index,setIndex]=useState(null) // Track the index of the hovered icon
+  // const [taskById, setTaskById] = useState({});
+ 
   const eId = localStorage.getItem("eId");
   const getTasks = async () => {
     try {
@@ -20,11 +38,25 @@ const AllTask = () => {
       console.log(error.message);
     }
   };
-
+  const HandleModal=(indx)=>{
+    openModal();
+    setIndex(indx)
+  }
   useEffect(() => {
     getTasks();
   }, []);
+  function openModal() {
+    setIsOpen(true);
+  }
 
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
   return (
     <div
       className="Econtainer"
@@ -65,6 +97,7 @@ const AllTask = () => {
                     onMouseEnter={() => setFocusedIndex(index)}
                     onMouseLeave={() => setFocusedIndex(null)}
                     style={{cursor:"pointer"}}
+                    onClick={() => HandleModal(index)}
                   >
                     {focusedIndex === index ? <InfoIcon /> : <InfoOutlinedIcon />}
                   </div>
@@ -74,6 +107,59 @@ const AllTask = () => {
           ))}
         </tbody>
       </table>
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <div className="mainModal">
+          <div className="sp1">
+        <span>Project Name:{tasks[index]?.description}</span>
+
+          </div>
+          <div
+      className="Econtainer"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        marginLeft: "5vw",
+      }}
+    >        
+        <table>
+        <thead>
+          <tr>
+            <th>SrNo:</th>
+            <th>Employee Id</th>
+            <th>Name</th>
+            <th>Hours Alloted</th>
+            <th>Percenatge Alloted</th>
+            <th>Work Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tasks[index]?.employees.map((data,ind)=>(
+            <tr key={ind+1}>
+              <td>{ind+1}</td>
+              <td>{data.employee_id}</td>
+              <td>{data.name}</td>
+              <td>{data.hours_alloted}</td>
+              <td>{data.percentage_alloted}</td>
+              <td>{data.isComplete==="1"?("Completed"):(data.isRejected==="1"?("Rejected"):("Review"))}</td>
+            </tr>
+          ))}
+        </tbody>
+        </table>
+        
+        
+      </div>
+        </div>
+        <div style={{display:"flex",justifyContent:"center"}}>
+        <button style={{background:"red"}}onClick={closeModal}>close</button>
+        </div>
+      </Modal>
     </div>
   );
 };

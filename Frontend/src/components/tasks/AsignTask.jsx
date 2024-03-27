@@ -75,7 +75,7 @@ function AsignTask() {
   return (
     <div className="containerr">
       <div className="LogDetailContaine">
-        <h1>Task</h1>
+        <h1>Project</h1>
         <div className="LogDetail">
           <div className="frmd">
             <label>Name</label>
@@ -87,11 +87,19 @@ function AsignTask() {
           </div>
           <div className="frmd">
             <label>Employee Id</label>
-            <input
-              placeholder="Employee Id"
-              value={employee_id}
-              onChange={(e) => setEmployee_id(e.target.value)}
-            />
+            <select  onChange={(e) => setEmployee_id(e.target.value)}>
+              <option value="" hidden>Select an option</option>
+              <option value="E1">E1</option>
+              <option value="E2">E2</option>
+              <option value="E3">E3</option>
+              <option value="E4">E4</option>
+              <option value="E5">E5</option>
+              <option value="E6">E6</option>
+              <option value="E7">E7</option>
+              <option value="E8">E8</option>
+              <option value="E9">E9</option>
+              <option value="E10">E10</option>
+            </select>
           </div>
           <div className="frmd">
             <label>Task Id</label>

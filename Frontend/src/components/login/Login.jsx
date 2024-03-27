@@ -9,7 +9,12 @@ function Login() {
   const navigate = useNavigate();
   useEffect(() => {
     let login = localStorage.getItem("login");
-    if (login) navigate("/");
+    if (login) 
+    {
+      if(localStorage.getItem("admin")) navigate("/manager");
+      else
+      navigate("/employee");
+    }
   });
   const handleLogin = async () => {
     const data = { employee_id, password };
@@ -41,10 +46,10 @@ function Login() {
         <h1>Login</h1>
         <div className="LogDetail">
           <div className="frmd">
-            <label>Employee Id</label>
+            <label>User Id</label>
 
             <input
-              placeholder="Employee Id"
+              placeholder="User Id"
               value={employee_id}
               onChange={(e) => setEmployee_id(e.target.value)}
             />
@@ -64,11 +69,6 @@ function Login() {
         <div id="c112">
           <div className="btn1" onClick={handleLogin}>
             <button>Login</button>
-          </div>
-          <div className="btn1" onClick={handleLogin}>
-            <Link to="/register">
-              <button>Register</button>
-            </Link>
           </div>
         </div>
       </div>

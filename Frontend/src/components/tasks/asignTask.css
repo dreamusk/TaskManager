@@ -103,3 +103,12 @@ input{
 textarea{
     height: 10vh;
 }
+.sp1 span{
+    color: #464444;
+    font-size: 2vw;
+}
+.sp1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

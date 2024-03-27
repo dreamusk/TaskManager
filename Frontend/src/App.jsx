@@ -20,13 +20,11 @@ function App() {
   return (
     <Router>
       <Routes>
-      <Route path="/" element={<Notes />} />
-      <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/notes" element={<Protected Component={Notes} />} />
+      <Route path="/register" element={<MProtected Component={Register} />} />
       <Route path="/employee" element={<Protected Component={Employee} />} />
       <Route path="/taskCompleted" element={<Protected Component={TaskCompleted} />} />
-      <Route path="/manager" element={<MProtected Component={AllTask} />} />
+      <Route path="/manager" element={<MProtected Component={AsignTask} />} />
       <Route path="/asignTask" element={<MProtected Component={AsignTask} />} />
       <Route path="/allTask" element={<MProtected Component={AllTask} />} />
       <Route path="/completedTask" element={<MProtected Component={CompletedTask} />} />

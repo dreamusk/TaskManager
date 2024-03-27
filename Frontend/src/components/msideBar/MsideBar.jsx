@@ -7,11 +7,25 @@ import tdone from "../../assets/tdone.png";
 import query from "../../assets/query.png";
 import AllTask from "../../assets/Alltask.png";
 import suggestion from "../../assets/suggestion.png";
+import Graph from "../../assets/Graph.png";
+import review from "../../assets/review.png";
 import { Link, useParams } from "react-router-dom";
 import AssignmentReturnedTwoToneIcon from '@material-ui/icons/AssignmentReturnedTwoTone';
 import AssignmentTurnedInTwoToneIcon from '@material-ui/icons/AssignmentTurnedInTwoTone';
 import QuestionAnswerTwoToneIcon from '@material-ui/icons/QuestionAnswerTwoTone';
 import EmojiObjectsTwoToneIcon from '@material-ui/icons/EmojiObjectsTwoTone';
+import Modal from 'react-modal';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
 const MsideBar = (props) => {
   const [clicked1, setClicked1] = useState(true);
   const [clicked2, setClicked2] = useState(false);
@@ -60,6 +74,27 @@ const handleClick5 = () => {
   // Additional actions you want to perform upon click
 }
 const {Item}=props;
+
+let subtitle;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = '#f00';
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  const handleSignOut=()=>{
+    localStorage.clear();
+    window.location.href = '/login';
+  }
   return (
     <div className="main">
       <div className="Msidecontainer">
@@ -74,7 +109,7 @@ const {Item}=props;
           <div className="mtaskGivenText">
          
             <span>
-             Asign Task
+             Assign Project
             </span>
        
           </div>
@@ -88,7 +123,7 @@ const {Item}=props;
           <div className="mtaskGivenText">
          
             <span>
-             All Task
+             All Project
             </span>
        
           </div>
@@ -102,7 +137,7 @@ const {Item}=props;
           <div className="mtaskGivenText">
           
             <span>
-            Completed Task
+            Completed Project
             </span>
             
           </div>
@@ -111,11 +146,11 @@ const {Item}=props;
         <Link to='/reviewTask'>
         <div className={`mtaskGiven3 ${clicked3 ? 'clicked3' : ''}`} onClick={handleClick3}>
           <div className="mtaskGivenImage">
-          <img src={query} ></img>
+          <img src={review} ></img>
           </div>
           <div className="mtaskGivenText">
             <span>
-            Task Review
+            Project Review
             </span>
           </div>
         </div>
@@ -123,7 +158,7 @@ const {Item}=props;
         <Link to='/employeePerformance'>
         <div className={`mtaskGiven4 ${clicked4 ? 'clicked4' : ''}`} onClick={handleClick4}>
           <div className="mtaskGivenImage" id="sugg">
-          <img src={suggestion} ></img>
+          <img src={Graph} ></img>
           </div>
           <div className="mtaskGivenText">
             <span>
@@ -151,7 +186,7 @@ const {Item}=props;
           </div>
           <div className="mbut1">
           
-          <button>SignOut</button>
+          <button onClick={handleSignOut}>SignOut</button>
          
           </div>
         </div>
@@ -168,7 +203,7 @@ const {Item}=props;
       </div>
       <Item></Item>
       </div>
-    
+      
     </div>
   );
 };
