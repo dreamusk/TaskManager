@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./login.css";
 import bgimg from "./Bg.jpg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";//Link works like an component while navigate is used in condition
 import { server } from "../../server";
 function Login() {
+  console.log('hii')
   const [password, setPassword] = useState("");
   const [employee_id, setEmployee_id] = useState("");
-  const navigate = useNavigate();
+  console.log(employee_id)
+  const navigate = useNavigate();//navigate is taken from useNavigate
   useEffect(() => {
     let login = localStorage.getItem("login");
     if (login) 
@@ -16,6 +18,7 @@ function Login() {
       navigate("/employee");
     }
   });
+  //navigate is used here
   const handleLogin = async () => {
     const data = { employee_id, password };
     let response = await fetch(`${server}/api/employee/login/`, {

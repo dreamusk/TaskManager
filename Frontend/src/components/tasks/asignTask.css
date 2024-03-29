@@ -112,3 +112,45 @@ textarea{
     align-items: center;
     justify-content: center;
 }
+.btn29{
+    gap: 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -3vh;
+}
+.btn29 button{
+    padding: 0.1vw;
+    width: 5vw;
+    font-size: 1vw;
+    font-weight: 800;
+}
+.feedback{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2vh;
+}
+.feedback span{
+    font-size: 2vw;
+    font-weight: 900;
+}.feedbackArea{
+    display: flex;
+
+}
+.feedbackArea textarea {
+    
+    height: 20vh;
+    padding: 5px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    resize: none;
+    font-size: 1.2vw;
+    font-weight: 900;
+    /* Additional styles for the textarea within .feedbackArea */
+  }
+  .btn34{
+    display: flex;
+    justify-content: center
+  }

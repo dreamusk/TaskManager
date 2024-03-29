@@ -59,7 +59,7 @@
     border-left: 2px solid black;
 }
 
-.mtaskGiven1,.mtaskGiven2,.mtaskGiven3,.mtaskGiven4,.mtaskGiven5{
+.mtaskGiven1,.mtaskGiven2,.mtaskGiven3,.mtaskGiven4,.mtaskGiven5,.mtaskGiven6{
     display: flex;
     gap: 1vw;
     /* border: rgb(70, 70, 70) solid 2px; */
@@ -102,8 +102,13 @@
 }
 .mtaskGiven5.clicked5 {
     background-color: lightgray;
+}.mtaskGiven6.clicked6 {
+    background-color: lightgray;
 }
 .mtaskGiven5.clicked5 span{
+    color: rgb(1, 1, 1);
+}
+.mtaskGiven6.clicked6 span{
     color: rgb(1, 1, 1);
 }
 .mtaskGivenImage img{

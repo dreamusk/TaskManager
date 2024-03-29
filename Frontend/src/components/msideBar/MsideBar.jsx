@@ -8,6 +8,7 @@ import query from "../../assets/query.png";
 import AllTask from "../../assets/Alltask.png";
 import suggestion from "../../assets/suggestion.png";
 import Graph from "../../assets/Graph.png";
+import emp from "../../assets/emp.png";
 import review from "../../assets/review.png";
 import { Link, useParams } from "react-router-dom";
 import AssignmentReturnedTwoToneIcon from '@material-ui/icons/AssignmentReturnedTwoTone';
@@ -32,6 +33,7 @@ const MsideBar = (props) => {
   const [clicked3, setClicked3] = useState(false);
   const [clicked4, setClicked4] = useState(false);
   const [clicked5, setClicked5] = useState(false);
+  const [clicked6, setClicked6] = useState(false);
   const [profile, setProfile] = useState(false);
   const handleClick1 = () => {
     setClicked1(true);
@@ -39,6 +41,7 @@ const MsideBar = (props) => {
     setClicked3(false);
     setClicked4(false);
     setClicked5(false);
+    setClicked6(false);
     // Additional actions you want to perform upon click
 }
 const handleClick2 = () => {
@@ -47,6 +50,7 @@ const handleClick2 = () => {
   setClicked3(false);
   setClicked4(false);
   setClicked5(false);
+  setClicked6(false);
   // Additional actions you want to perform upon click
 }
 const handleClick3= () => {
@@ -54,6 +58,7 @@ const handleClick3= () => {
   setClicked2(false);
   setClicked1(false);
   setClicked4(false);
+  setClicked6(false);
   setClicked5(false);
   // Additional actions you want to perform upon click
 }
@@ -62,6 +67,7 @@ const handleClick4 = () => {
   setClicked2(false);
   setClicked3(false);
   setClicked1(false);
+  setClicked6(false);
   setClicked5(false);
   // Additional actions you want to perform upon click
 }
@@ -70,6 +76,16 @@ const handleClick5 = () => {
   setClicked2(false);
   setClicked3(false);
   setClicked1(false);
+  setClicked6(false);
+  setClicked4(false);
+  // Additional actions you want to perform upon click
+}
+const handleClick6 = () => {
+  setClicked6(true);
+  setClicked2(false);
+  setClicked3(false);
+  setClicked1(false);
+  setClicked5(false);
   setClicked4(false);
   // Additional actions you want to perform upon click
 }
@@ -166,7 +182,17 @@ let subtitle;
             </span>
           </div>
         </div></Link>
-        
+        <Link to='/register'>
+        <div className={`mtaskGiven6 ${clicked6 ? 'clicked6' : ''}`} onClick={handleClick6}>
+          <div className="mtaskGivenImage" id="sugg">
+          <img src={emp} ></img>
+          </div>
+          <div className="mtaskGivenText">
+            <span>
+             Add user
+            </span>
+          </div>
+        </div></Link>
       </div>
       <div className="mnAndB">
       <div className="MNavcontainer">

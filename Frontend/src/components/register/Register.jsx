@@ -108,6 +108,7 @@ function Register() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+    {/* This is targeting post method of django backend which is located in api/employee/view/views*/}
           </div> 
           <div className="frmd">
             <label>Designation</label>
@@ -181,12 +182,7 @@ function Register() {
         <div id="c112">
 
         <div className="btn1" >
-          <button  onClick={handleRegister}>Register</button>
-        </div>
-        <div className="btn1">
-          <Link to="/login">
-          <button>Login</button>
-          </Link>
+          <button  onClick={handleRegister}>Add</button>
         </div>
         </div>
       </div>

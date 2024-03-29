@@ -205,6 +205,34 @@ def taskUpdate(request, tId):
         return Response(serializer.data)
     except Task.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['post'])
+def taskReviewUpdate(request, eId):
+    try:
+        tasks=Task.objects.filter(manager_id=eId)
+        for i in tasks:
+            for j in i.employees:
+                if(request.data['emp']['employee']['employee_id']==j['employee_id']):
+                    j['isComplete']=request.data['emp']['isComplete']
+                    j['isRejected']=request.data['emp']['isRejected']
+                    j['isWaited']=request.data['emp']['isWaited']
+                    j['feedback']=request.data['feedback']
+                    i.save()
+        
+        for i in tasks:
+            flag =1
+            for j in i.employees:
+                if(j['isComplete']=='0'):
+                    flag=0
+            if(flag==1):
+                i.is_Completed=True
+                i.percentage_Completed=100
+                i.save()
+        
+                
+        return Response({"message": "Task Updated"}, status=status.HTTP_201_CREATED)
+    except Task.DoesNotExist:
+        return Response(status=404)
 ######################### Task Completed##################################
 @api_view(['POST'])
 def taskCompleted(request):

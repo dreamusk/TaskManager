@@ -11,22 +11,25 @@ const TaskCompleted = () => {
   let temPdta=[];
   const getTasks = async () => {
     try {
-      const response = await fetch(`${server}/api/task/getByid/${eId}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch tasks");
-      }
+      const response = await fetch(`${server}/api/task/getByEid/${eId}`);
+    
       const jsonData = await response.json();
-      const filteredTasks = jsonData.filter((task) =>
-        task.employees.some((employee) => (employee.isComplete === "1" && employee.employee_id===eId))
-      );
-      console.log("tc",filteredTasks)
+      let filteredTasks=[];
+      jsonData.forEach((data)=>{
+        
+          data.employees.forEach((emp)=>{
+            if(emp.isComplete==="1"){
+              filteredTasks.push(data)
+            }
+        }
+          )})
       filteredTasks?.forEach((data)=>{
         data?.employees?.forEach((emp)=>{
             if(emp.employee_id===eId)
             temPdta.push(emp)
         })
       })
-      console.log(temPdta)
+      console.log({temPdta})
       setTasks(filteredTasks);
       SetEmpData(temPdta);
     } catch (error) {

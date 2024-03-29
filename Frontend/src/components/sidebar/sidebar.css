@@ -4,7 +4,7 @@
 }
 .Sidecontainer{
     height: 100vh;
-    width: 19vw;
+    width: 20vw;
     background:rgb(141,146,175);
     display: flex;
     flex-direction: column;
@@ -14,7 +14,7 @@
 }
 .Navcontainer{
     height: 10vh;
-    width: 80vw;
+    width: 84.1vw;
     background-color:  rgb(50,49,56);
     border: rgb(2, 2, 2) solid 1px;
 }
@@ -56,7 +56,7 @@
     border-left: 2px solid black;
 }
 
-.taskGiven1,.taskGiven2,.taskGiven3,.taskGiven4{
+.taskGiven1,.taskGiven2,.taskGiven3,.taskGiven4,.taskGiven5{
     display: flex;
     gap: 1vw;
     /* border: rgb(70, 70, 70) solid 2px; */
@@ -97,6 +97,14 @@
     color: rgb(1, 1, 1);
     /* Change to the desired color */
 }
+.taskGiven5.clicked5 {
+    background-color: lightgray;
+    /* Change to the desired color */
+}
+.taskGiven5.clicked5 span{
+    color: rgb(1, 1, 1);
+    /* Change to the desired color */
+}
 .taskGivenImage img{
     width: 3vw;
     height: 5vh;
@@ -105,9 +113,9 @@
 .taskGivenText{
 
     display: flex;
-    justify-content: center;
-    align-items: center;
-  
+    
+    
+    width: 10vw;
 }
 .taskGivenText span{
     color: rgb(227, 227, 227);

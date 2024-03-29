@@ -6,6 +6,7 @@ import Logo from "../../assets/Logo.png";
 import tdone from "../../assets/tdone.png";
 import query from "../../assets/query.png";
 import suggestion from "../../assets/suggestion.png";
+import clock from "../../assets/clock.png";
 import { Link, useParams } from "react-router-dom";
 import AssignmentReturnedTwoToneIcon from '@material-ui/icons/AssignmentReturnedTwoTone';
 import AssignmentTurnedInTwoToneIcon from '@material-ui/icons/AssignmentTurnedInTwoTone';
@@ -16,33 +17,46 @@ const SideBar = (props) => {
   const [clicked2, setClicked2] = useState(false);
   const [clicked3, setClicked3] = useState(false);
   const [clicked4, setClicked4] = useState(false);
+  const [clicked5, setClicked5] = useState(false);
   const [profile, setProfile] = useState(false);
   const handleClick1 = () => {
     setClicked1(true);
     setClicked2(false);
     setClicked3(false);
     setClicked4(false);
+    setClicked5(false);
     // Additional actions you want to perform upon click
 }
 const handleClick2 = () => {
   setClicked2(true);
   setClicked1(false);
   setClicked3(false);
-  setClicked4(false);
+    setClicked5(false);
+    setClicked4(false);
   // Additional actions you want to perform upon click
 }
 const handleClick3= () => {
   setClicked3(true);
   setClicked2(false);
   setClicked1(false);
-  setClicked4(false);
+    setClicked5(false);
+    setClicked4(false);
   // Additional actions you want to perform upon click
 }
 const handleClick4 = () => {
   setClicked4(true);
   setClicked2(false);
   setClicked3(false);
-  setClicked1(false);
+    setClicked5(false);
+    setClicked1(false);
+  // Additional actions you want to perform upon click
+}
+const handleClick5 = () => {
+  setClicked5(true);
+  setClicked2(false);
+  setClicked3(false);
+    setClicked4(false);
+    setClicked1(false);
   // Additional actions you want to perform upon click
 }
 const {Item}=props;
@@ -100,6 +114,19 @@ const {Item}=props;
             </span>
           </div>
         </div>
+        <Link to={`/hoursEntry`}>
+        <div className={`taskGiven5 ${clicked5 ? 'clicked5' : ''}`} onClick={handleClick5}>
+          <div className="taskGivenImage" id="sugg">
+          <img src={clock} ></img>
+          </div>
+          <div className="taskGivenText">
+            <span>
+             Hours Entry
+            </span>
+          </div>
+        </div>
+        </Link>
+        
       </div>
       <div className="nAndB">
       <div className="Navcontainer">

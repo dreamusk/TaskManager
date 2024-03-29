@@ -4,7 +4,7 @@ import { server } from "../../server";
 import done from '../../assets/done.png'
 const Employee = () => {
   const [tasks, setTasks] = useState([]);
-
+  const [hours,setHours]=useState(0);
   const eId = localStorage.getItem("eId");
 
   const getTasks = async () => {
@@ -23,7 +23,9 @@ const Employee = () => {
       console.log(error.message);
     }
   }
-  
+  const handleSubmit = async () => {
+    console.log(hours);
+  }
   useEffect(() => {
     getTasks();
   }, []);
@@ -38,11 +40,12 @@ const Employee = () => {
             <th>Manager Id</th>
             <th>Team</th>
             <th>Description</th>
-            <th>Hours Alloted</th>
             <th>Percenatge Assigned</th>
             <th>Start date</th>
             <th>DeadLine</th>
-            <th>Completed</th>
+            <th>Hours Contributed</th>
+            <th>Submit</th>
+
           </tr>
         </thead>
         <tbody>
@@ -53,16 +56,22 @@ const Employee = () => {
               <td>{task.manager_id}</td>
               <td>{task.team}</td>
               <td>{task.description}</td>
-              <td>{task.employees[0].hours_alloted}</td>
               <td>{task.employees[0].percentage_alloted}</td>
               <td>{task.start_date.split("T")[0]}</td>
               <td>{task.deadline.split("T")[0]}</td>
+              <td >
+                <input
+                style={{width:"80px",height:"20px",border:"1px solid #9D9BF1",borderRadius:"5px",padding:"5px",fontWeight:"900",fontSize:"13px"}}
+                onChange={(e)=>setHours(e.target.value)}></input>
+              </td>
               <td> <div className="btn2">
                 <div className="imgic">
-                  <img src={done} alt="" />
+                  <img src={done} onClick={handleSubmit} alt="" />
                 </div>
               </div>
                 </td>
+              
+
             </tr>
           ))}
         </tbody>

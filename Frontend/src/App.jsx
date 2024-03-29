@@ -14,6 +14,7 @@ import CompletedTask from "./components/tasks/CompletedTask";
 import ReviewTask from "./components/tasks/ReviewTask";
 import EmployeePerformance from "./components/manger/EmployeePerformance";
 import Dashboard from "./components/tasks/dashboard/Dashboard";
+import HoursEntry from "./components/employee/HoursEntry";
 function App() {
 
 
@@ -23,6 +24,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<MProtected Component={Register} />} />
       <Route path="/employee" element={<Protected Component={Employee} />} />
+      <Route path="/hoursEntry" element={<Protected Component={HoursEntry} />} />
       <Route path="/taskCompleted" element={<Protected Component={TaskCompleted} />} />
       <Route path="/manager" element={<MProtected Component={AsignTask} />} />
       <Route path="/asignTask" element={<MProtected Component={AsignTask} />} />
