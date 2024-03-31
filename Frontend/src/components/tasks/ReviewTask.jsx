@@ -122,7 +122,8 @@ const ReviewTask = () => {
             <th>Employee Id</th>
             <th>Name</th>
             <th>Percenatge Alloted</th>
-            <th>Housr Alloted</th>
+            {/* <th>Hours Alloted</th> */}
+            <th>Hours Taken</th>
             <th>Start date</th>
             <th>Deadline</th>
             <th>Action</th>
@@ -138,6 +139,7 @@ const ReviewTask = () => {
               <td>{task.employee.name}</td>
               <td>{task.employee.percentage_alloted}</td>
               <td>{task.employee.hours_alloted}</td>
+              {/* <td>{task.employee.hours}</td> */}
               <td>{task.start_date.split("T")[0]}</td>
               <td>{task.deadline.split("T")[0]}</td>
              

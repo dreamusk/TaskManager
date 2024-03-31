@@ -44,12 +44,12 @@ def register_employee(request):
         return Response({"error": "Employee already exists with that email or username"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     # Hash the password
-    hashed_password = make_password(password)
+    # hashed_password = make_password(password)
 
     # Create and save the employee
     employee = Employee.objects.create(
         name=name,
-        password=hashed_password,
+        password=password,
         age=age,
         gender=gender,
         designation=designation,
@@ -75,8 +75,10 @@ def employeeLogin(request):
     if tempE is None:
         return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
     
-    if check_password(password, tempE.password):
-         return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
+    # if check_password(password, tempE.password):
+    #      return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
+    if(password==tempE.password):
+        return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])

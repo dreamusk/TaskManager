@@ -189,7 +189,7 @@ def taskUpdate(request, tId):
         eId = data['eId']
         isComplete = data['isComplete']
         isRejected = data['isRejected']
-
+        
         # Update isComplete, isRejected, and remark for the employee with eId
         for employee in task.employees:
             if employee['employee_id'] == eId:
@@ -212,7 +212,7 @@ def taskReviewUpdate(request, eId):
         tasks=Task.objects.filter(manager_id=eId)
         for i in tasks:
             for j in i.employees:
-                if(request.data['emp']['employee']['employee_id']==j['employee_id']):
+                if(request.data['emp']['employees']['employee_id']==j['employee_id']):
                     j['isComplete']=request.data['emp']['isComplete']
                     j['isRejected']=request.data['emp']['isRejected']
                     j['isWaited']=request.data['emp']['isWaited']
@@ -229,6 +229,23 @@ def taskReviewUpdate(request, eId):
                 i.percentage_Completed=100
                 i.save()
         
+                
+        return Response({"message": "Task Updated"}, status=status.HTTP_201_CREATED)
+    except Task.DoesNotExist:
+        return Response(status=404)
+@api_view(['post'])
+def taskDoneBYEmployeeUpdate(request, eId):
+    try:
+        tasks=Task.objects.filter(manager_id=eId,task_id=request.data['emp']['task_id'])
+        for i in tasks:
+            for j in i.employees:
+                for k in request.data['emp']['employees']:
+                    if(j['employee_id']==k['employee_id']):
+                        j['isComplete']=request.data['emp']['isComplete']
+                        j['isWaited']=request.data['emp']['isWaited']
+                        j['isEmployeeT']=request.data['emp']['isEmployeeT']
+                        j['hours']=request.data['emp']['hours']
+                        i.save()
                 
         return Response({"message": "Task Updated"}, status=status.HTTP_201_CREATED)
     except Task.DoesNotExist:

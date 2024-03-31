@@ -19,12 +19,12 @@ function AsignTask() {
     const mId = localStorage.getItem('eId');
     let employees = [{
       employee_id,
-      name,
       percentage_alloted,
       hours_alloted,
       isComplete: "0",
       isRejected: "0",
-      isWaited: "0"
+      isWaited: "0",
+      isEmployeeT: "1",
     }];
 
     const data = {
@@ -38,6 +38,9 @@ function AsignTask() {
     };
     console.log(data)
     try {
+      let r=await fetch(`${server}/api/employee/eid/${employee_id}/`)
+      r=await r.json();
+      employees[0]['name']=r.name;
       const response = await fetch(`${server}/api/task/add/`, {
         method: "POST",
         headers: {
@@ -77,17 +80,17 @@ function AsignTask() {
       <div className="LogDetailContaine">
         <h1>Project</h1>
         <div className="LogDetail">
-          <div className="frmd">
+          {/* <div className="frmd">
             <label>Name</label>
             <input
               placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-          </div>
+          </div> */}
           <div className="frmd">
             <label>Employee Id</label>
-            <select  onChange={(e) => setEmployee_id(e.target.value)}>
+            {/* <select  onChange={(e) => setEmployee_id(e.target.value)}>
               <option value="" hidden>Select an option</option>
               <option value="E1">E1</option>
               <option value="E2">E2</option>
@@ -99,8 +102,13 @@ function AsignTask() {
               <option value="E8">E8</option>
               <option value="E9">E9</option>
               <option value="E10">E10</option>
-            </select>
-          </div>
+            </select> */}
+             <input
+              placeholder="Employee Id"
+              value={employee_id}
+              onChange={(e) => setEmployee_id(e.target.value)}
+            />
+          </div> 
           <div className="frmd">
             <label>Task Id</label>
             <input
@@ -116,6 +124,7 @@ function AsignTask() {
                 placeholder="Description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                style={{resize:"none"}}
               />
            
           </div>
@@ -138,14 +147,14 @@ function AsignTask() {
               onChange={(e) => setAltPer(e.target.value)}
             />
           </div>
-          <div className="frmd">
+          {/* <div className="frmd">
             <label>Alloted Hours</label>
             <input
               placeholder="Alloted Hours"
               value={hours_alloted}
               onChange={(e) => setHours_alloted(e.target.value)}
             />
-          </div>
+          </div> */}
           <div className="frmd">
             <label>Deadline</label>
             <input

@@ -12,9 +12,9 @@ const Employee = () => {
       const response = await fetch(`${server}/api/task/getByEid/${eId}`);
       const jsonData = await response.json();
       console.log({jsonData});
-  
+      
       if (Array.isArray(jsonData)) { // Check if jsonData is an array
-        let filteredTasks = jsonData.filter((task) => task.employees.some((employee) => employee.employee_id === eId));
+        let filteredTasks = jsonData.filter((task) => task.employees.some((employee) => employee.employee_id === eId && employee.isEmployeeT==="1"));
         setTasks(filteredTasks);
       } else {
         console.error("Data returned from the server is not in the expected format (not an array)");
@@ -23,9 +23,28 @@ const Employee = () => {
       console.log(error.message);
     }
   }
-  const handleSubmit = async () => {
-    console.log(hours);
+  const handleSubmit = async (index) => {
+    let data = {
+      emp:tasks[index]
+    }
+    console.log({data})
+  let mId=tasks[index].manager_id
+  data.emp["isComplete"]="0";
+  data.emp["isRejected"]="0";
+  data.emp["isWaited"]="1";
+  data.emp["isEmployeeT"]="0";
+  data.emp["hours"]=hours;
+  const response = await fetch(`${server}/api/task/TaskUpdateByEmployee/${mId}/`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  if(response.ok)
+  window.location.reload()
   }
+  
   useEffect(() => {
     getTasks();
   }, []);
@@ -41,6 +60,7 @@ const Employee = () => {
             <th>Team</th>
             <th>Description</th>
             <th>Percenatge Assigned</th>
+            {/* <th>Hours Alloted</th> */}
             <th>Start date</th>
             <th>DeadLine</th>
             <th>Hours Contributed</th>
@@ -57,6 +77,7 @@ const Employee = () => {
               <td>{task.team}</td>
               <td>{task.description}</td>
               <td>{task.employees[0].percentage_alloted}</td>
+              {/* <td>{task.employees[0].hours_alloted}</td> */}
               <td>{task.start_date.split("T")[0]}</td>
               <td>{task.deadline.split("T")[0]}</td>
               <td >
@@ -66,7 +87,7 @@ const Employee = () => {
               </td>
               <td> <div className="btn2">
                 <div className="imgic">
-                  <img src={done} onClick={handleSubmit} alt="" />
+                  <img src={done} onClick={() => handleSubmit(index)} alt="" />
                 </div>
               </div>
                 </td>

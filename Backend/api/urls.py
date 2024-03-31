@@ -12,6 +12,7 @@ urlpatterns=[
     path('task/teamBarGraph/<str:eId>/',views.getTeamPerformance,name="graph got"),
     path('task/getTaskOfEmployeeTeamAndEid/<str:eId>/',views.getTaskOfEmployeeTeamAndEid,name="graph got"),
     path('task/updateTaskOfEmployeeReview/<str:eId>/',views.taskReviewUpdate,name="Review Updated"),
+    path('task/TaskUpdateByEmployee/<str:eId>/',views.taskDoneBYEmployeeUpdate,name="Review Updated"),
     path('task/completed/',views.taskCompleted,name="task Completed"),
     path('task/rejected/',views.taskRejected,name="task Rejected"),
     path('task/update/<str:tId>/',views.taskUpdate,name="task Updated"),

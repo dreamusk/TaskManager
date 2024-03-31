@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Register from "./components/register/Register";
-import Notes from "./components/notes/Notes";
 import Login from "./components/login/Login";
 import Protected from "./Protected";
 import Employee from "./components/employee/Employee";
