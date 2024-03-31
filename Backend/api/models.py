@@ -63,7 +63,21 @@ class Task(models.Model):
     team = models.CharField(max_length=20, choices=TEAM_CHOICES, null=True, blank=True)
     def __str__(self):
         return self.description 
-
+class Hours(models.Model):
+    TEAM_CHOICES = (
+        ('Data_Analyst', 'Data_Analyst'),
+        ('Dev_Ops', 'Dev_Ops'),
+        ('Backend', 'Backend'),
+        ('sales', 'Sales'),('Frontend', 'Frontend'),
+        # Add more choices as needed
+    )
+    hid = models.AutoField(primary_key=True)
+    employee_id = models.CharField(max_length=20, unique=False, null=False, blank=False)
+    task_id = models.CharField(max_length=20, unique=False, null=False, blank=False)
+    hours = models.DecimalField(max_digits=5, decimal_places=2)
+    completed_percentage = models.DecimalField(max_digits=5, decimal_places=2)
+    description = models.TextField(null=False, blank=False)
+    team = models.CharField(max_length=20, choices=TEAM_CHOICES, null=True, blank=True)
 class TaskCompleted(models.Model):
     tcid=models.AutoField(primary_key=True)
     task_completed_id=models.CharField(max_length=20, unique=True, null=False, blank=False)

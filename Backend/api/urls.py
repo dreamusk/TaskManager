@@ -17,5 +17,7 @@ urlpatterns=[
     path('task/completed/',views.taskCompleted,name="task Completed"),
     path('task/rejected/',views.taskRejected,name="task Rejected"),
     path('task/update/<str:tId>/',views.taskUpdate,name="task Updated"),
+    path('hours/add/',views.hoursAdd,name="task Updated"),
+    path('hours/getById/<str:eId>/',views.hoursGet,name="task Updated"),
 
 ]

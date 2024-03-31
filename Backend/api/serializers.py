@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from . models import Employee,TaskCompleted,Task,TaskRejected
+from . models import Employee,TaskCompleted,Task,TaskRejected,Hours
 
 class EmployeeSerializer(ModelSerializer):
     class Meta:
@@ -13,4 +13,9 @@ class TasksSerializer(ModelSerializer):
 class TaskCompletedSerializer(ModelSerializer):
     class Meta:
         model=TaskCompleted
+        fields='__all__'
+
+class HoursSerializer(ModelSerializer):
+    class Meta:
+        model=Hours
         fields='__all__'

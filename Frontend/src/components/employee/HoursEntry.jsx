@@ -14,7 +14,7 @@ function HoursEntry() {
 
   const handleSubmit = async () => {
     // Form validation checks
-    const mId = localStorage.getItem('eId');
+    
     let employees = [{
       employee_id,
       name,
@@ -28,15 +28,14 @@ function HoursEntry() {
     const data = {
       task_id: taskId,
       description,
-      manager_id: mId,
       team,
-      employees,
-      start_date: "2024-03-25T17:00:00Z",
-      deadline
+      hours:hours_alloted,
+      employee_id:localStorage.getItem("eId"),
+      compeleted_percentage: percentage_alloted,
     };
     console.log(data)
     try {
-      const response = await fetch(`${server}/api/task/add/`, {
+      const response = await fetch(`${server}/api/hours/add/`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
@@ -50,7 +49,7 @@ function HoursEntry() {
         
       }
       else if (response.ok) {
-        alert('Employee Assigned Task Successfully :)');
+        alert('Hours Entry Successful :)');
         setName('');
         setEmployee_id('');
         setDescription('');
@@ -62,11 +61,11 @@ function HoursEntry() {
         console.log("Registered");
       } 
       else {
-        throw new Error('Registration failed');
+        throw new Error('Hours Entry failed');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('Registration failed :(');
+      alert('Hours Entry failed :(');
     }
   };
 

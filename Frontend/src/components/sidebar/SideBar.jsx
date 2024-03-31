@@ -94,26 +94,6 @@ const {Item}=props;
           </div>
         </div>
         </Link >
-        <div className={`taskGiven3 ${clicked3 ? 'clicked3' : ''}`} onClick={handleClick3}>
-          <div className="taskGivenImage">
-          <img src={query} ></img>
-          </div>
-          <div className="taskGivenText">
-            <span>
-              Query
-            </span>
-          </div>
-        </div>
-        <div className={`taskGiven4 ${clicked4 ? 'clicked4' : ''}`} onClick={handleClick4}>
-          <div className="taskGivenImage" id="sugg">
-          <img src={suggestion} ></img>
-          </div>
-          <div className="taskGivenText">
-            <span>
-              Suggestion
-            </span>
-          </div>
-        </div>
         <Link to={`/hoursEntry`}>
         <div className={`taskGiven5 ${clicked5 ? 'clicked5' : ''}`} onClick={handleClick5}>
           <div className="taskGivenImage" id="sugg">
@@ -126,6 +106,30 @@ const {Item}=props;
           </div>
         </div>
         </Link>
+        <Link to={`/hoursLog`}>
+        <div className={`taskGiven3 ${clicked3 ? 'clicked3' : ''}`} onClick={handleClick3}>
+          <div className="taskGivenImage">
+          <img src={query} ></img>
+          </div>
+          <div className="taskGivenText">
+            <span>
+              Hours Entry Log
+            </span>
+          </div>
+        </div>
+        </Link>
+        
+        <div className={`taskGiven4 ${clicked4 ? 'clicked4' : ''}`} onClick={handleClick4}>
+          <div className="taskGivenImage" id="sugg">
+          <img src={suggestion} ></img>
+          </div>
+          <div className="taskGivenText">
+            <span>
+              Suggestion
+            </span>
+          </div>
+        </div>
+        
         
       </div>
       <div className="nAndB">

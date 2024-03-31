@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
-from .models import Task,Employee,TaskCompleted,TaskRejected
-from .serializers import TasksSerializer,TaskCompletedSerializer
+from .models import Task,Employee,TaskCompleted,TaskRejected,Hours
+from .serializers import TasksSerializer,TaskCompletedSerializer,HoursSerializer
 # Create your views here.
 
 
@@ -326,4 +326,28 @@ def taskUpdateByManager(request):
             
     return Response({"message": "Task Added"}, status=status.HTTP_201_CREATED)
 
+@api_view(['POST'])
+def hoursAdd(request):
+    data=request.data
+    print(data)
+    Hours.objects.create(
+    description=data['description'],
+    employee_id=data['employee_id'],
+    task_id=data['task_id'],
+    hours=data['hours'],
+    team=data['team'],
+    completed_percentage=data['compeleted_percentage']
+    )
+    return Response({"message": "Hours Added"}, status=status.HTTP_201_CREATED)
+@api_view(['GET'])
+def hoursGet(request,eId):
+    try:
+        # Filter the tasks based on employee_id
+        filtered_tasks = Hours.objects.filter(employee_id=eId)
 
+        # Serialize the filtered tasks
+        serializer = HoursSerializer(filtered_tasks, many=True)
+        print(serializer.data)
+        return Response(serializer.data)
+    except Hours.DoesNotExist:
+        return Response(status=404)
