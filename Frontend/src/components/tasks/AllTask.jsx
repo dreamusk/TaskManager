@@ -24,9 +24,15 @@ const AllTask = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [tasks, setTasks] = useState([]);
   const [focusedIndex, setFocusedIndex] = useState(null);
+  const [edit,setEdit]=useState(false)
   const [index,setIndex]=useState(null) // Track the index of the hovered icon
   // const [taskById, setTaskById] = useState({});
- 
+ const [task_id,setTask_id]=useState(null)
+ const [team,setTeam]=useState(null)
+ const [description,setDescription]=useState(null)
+ const [percentage_Completed,setPercentage_Completed]=useState(null)
+ const [start_date,setStart_date]=useState(null)
+ const [deadline,setDeadline]=useState(null)
   const eId = localStorage.getItem("eId");
   const getTasks = async () => {
     try {
@@ -41,6 +47,53 @@ const AllTask = () => {
   const HandleModal=(indx)=>{
     openModal();
     setIndex(indx)
+  }
+  const handleEdit=async(indx)=>{
+    setTask_id(tasks[indx].task_id)
+    setTeam(tasks[indx].team)
+    setDescription(tasks[indx].description)
+    setPercentage_Completed(tasks[indx].percentage_Completed)
+    setStart_date(tasks[indx].start_date)
+    setDeadline(tasks[indx].deadline)
+  
+    setEdit(true)
+    setIndex(indx)
+
+
+   
+  }
+  const updateTask=async()=>{
+    let emp={};
+    tasks[index].employees.forEach((data)=>{
+      if(data.employee_id===eId){
+        emp=data
+      }
+    })
+    let data={
+      employee_id:eId,
+      task_id,
+      team,
+      description,
+      percentage_Completed,
+      start_date,
+      deadline,
+      isComplete:emp.isComplete,
+      isRejected:emp.isRejected,
+      isWaited:emp.isWaited,
+      isCompleted:emp.isCompleted,
+    }
+    console.log({data})
+    const response = await fetch(`${server}/api/task/updateByManager/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+      
+    })
+    console.log(response)
+    if(response.ok)
+    window.location.reload()
   }
   useEffect(() => {
     getTasks();
@@ -78,29 +131,85 @@ const AllTask = () => {
             <th>Start date</th>
             <th>Deadline</th>
             <th>Details</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {tasks.map((task, index) => (
-            <tr key={index + 1}>
-              <td>{index + 1}</td>
+          {tasks.map((task, indx) => (
+            <tr key={indx + 1}>
+             {(edit===true&&index===indx)?(
+              <>
+               <td>{indx + 1}</td>
+               <td><input value={task_id}
+               onChange={(e)=>setTask_id(e.target.value)}
+               style={{width:"90px",height:"20px",border:"1px solid black",borderRadius:"5px"}}
+               
+               ></input></td>
+               <td><input
+               value={team}
+               onChange={(e)=>setTeam(e.target.value)}
+               style={{width:"90px",height:"20px",border:"1px solid black",borderRadius:"5px"}}
+               
+               ></input></td>
+               <td><input
+               value={description}
+               onChange={(e)=>setDescription(e.target.value)}
+               style={{width:"90px",height:"20px",border:"1px solid black",borderRadius:"5px"}}
+               
+               ></input></td>
+               <td><input
+               value={percentage_Completed}
+               onChange={(e)=>setPercentage_Completed(e.target.value)}
+               style={{width:"90px",height:"20px",border:"1px solid black",borderRadius:"5px"}}
+               
+               ></input></td>
+               <td><input
+               value={start_date}
+               onChange={(e)=>setStart_date(e.target.value)}
+               style={{width:"90px",height:"20px",border:"1px solid black",borderRadius:"5px"}}
+               
+               ></input></td>
+               <td><input
+               value={deadline}
+              onChange={(e)=>setDeadline(e.target.value)}
+               style={{width:"90px",height:"20px",border:"1px solid black",borderRadius:"5px"}}
+               
+               ></input></td>
+               </>
+             ):( 
+             <><td>{indx + 1}</td>
               <td>{task.task_id}</td>
               <td>{task.team}</td>
               <td>{task.description}</td>
               <td>{task.percentage_Completed}</td>
               <td>{task.start_date.split("T")[0]}</td>
-              <td>{task.deadline.split("T")[0]}</td>
+              <td>{task.deadline.split("T")[0]}</td></>)}
+             
               <td>
                 <div className="btn2">
                   <div
                     className="imgic"
-                    onMouseEnter={() => setFocusedIndex(index)}
+                    onMouseEnter={() => setFocusedIndex(indx)}
                     onMouseLeave={() => setFocusedIndex(null)}
                     style={{cursor:"pointer"}}
-                    onClick={() => HandleModal(index)}
+                    onClick={() => HandleModal(indx)}
                   >
-                    {focusedIndex === index ? <InfoIcon /> : <InfoOutlinedIcon />}
+                    {focusedIndex === indx ? <InfoIcon /> : <InfoOutlinedIcon />}
                   </div>
+                </div>
+              </td>
+              <td>
+                <div className="btn29">
+                  {(edit===true&&index===indx)?(
+                    <>
+                   <button style={{ background: "#004b23" }} onClick={updateTask}>Save</button>
+
+                    <button style={{ background: "#bf0603" }} onClick={()=>setEdit(false)}>Cancel</button>
+                  </>
+                  ):(
+                  <>
+                  <button style={{ background: "darkgreen" }} onClick={()=>handleEdit(indx)}>Edit</button>
+                  <button style={{ background: "red" }}>Delete</button></>)}
                 </div>
               </td>
             </tr>

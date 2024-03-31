@@ -291,3 +291,39 @@ def taskRejected(request):
     reason=data['reason'],
     hours_contributed=data['hours_contributed']
     return Response({"message": "Task Added"}, status=status.HTTP_201_CREATED)
+@api_view(['POST'])
+def taskUpdateByManager(request):
+    data=request.data
+    task=Task.objects.get(task_id=data['task_id'])#finding existing task
+    flag=1
+    if  task is not None:
+        for employee in task.employees:
+         if employee['employee_id'] == data['employee_id'] and task.team == data['team']:
+            flag = 0
+            task.task_id = data['task_id']
+            task.team = data['team']
+            task.description = data['description']
+            task.percentage_Completed = data['percentage_Completed']
+            task.start_date = data['start_date']
+            task.deadline = data['deadline']
+            task.save()
+    else:
+        employee=[]
+        employee.extend({"employee_id":data['employee_id'],"description":data['description'],"percentage_Completed":data['percentage_Completed'],"start_date":data['start_date'],"deadline":data['deadline'],"isComplete":'0',"isRejected":'0',"isWaited":'0',"isEmployeeT":'1',"hours":'0',"remark":''})
+        if(task.len()>0,task['team']==data['team']):
+            task.employees.extend({"employee_id":data['employee_id'],"description":data['description'],"percentage_Completed":data['percentage_Completed'],"start_date":data['start_date'],"deadline":data['deadline'],"isComplete":'0',"isRejected":'0',"isWaited":'0',"isEmployeeT":'1',"hours":'0',"remark":''})
+            task.save()
+        else:
+            Task.objects.create(
+            task_id=data['task_id'],
+            description=data['description'],
+            employees=employee,
+            team=data['team'],
+            manager_id=data['manager_id'],
+            start_date=data['start_date'],
+            deadline=data['deadline'],
+            ) 
+            
+    return Response({"message": "Task Added"}, status=status.HTTP_201_CREATED)
+
+

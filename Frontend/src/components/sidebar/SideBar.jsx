@@ -13,7 +13,7 @@ import AssignmentTurnedInTwoToneIcon from '@material-ui/icons/AssignmentTurnedIn
 import QuestionAnswerTwoToneIcon from '@material-ui/icons/QuestionAnswerTwoTone';
 import EmojiObjectsTwoToneIcon from '@material-ui/icons/EmojiObjectsTwoTone';
 const SideBar = (props) => {
-  const [clicked1, setClicked1] = useState(true);
+  const [clicked1, setClicked1] = useState(false);
   const [clicked2, setClicked2] = useState(false);
   const [clicked3, setClicked3] = useState(false);
   const [clicked4, setClicked4] = useState(false);
