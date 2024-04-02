@@ -73,13 +73,9 @@ font-weight: 550;
   filter: grayscale(0%);/* Move image up by 5 pixels */
 }
 .BgimgNoProject{
-  width: 84.3vw;
-  height: 120vh;
+  width: 80.3vw;
+  height: 110vh;
   background-image:url(../../assets/Np.png) ;
   background-size: cover;
   background-repeat: no-repeat; 
-}
-.empty{
-  margin-top: 0;
-  margin-left: 0;
 }
