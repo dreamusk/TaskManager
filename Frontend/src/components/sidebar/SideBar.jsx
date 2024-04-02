@@ -76,6 +76,10 @@ const handleClick6 = () => {
     setClicked1(false);
   // Additional actions you want to perform upon click
 }
+const handleSignOut=()=>{
+  localStorage.clear();
+  window.location.href = '/login';
+}
 const {Item}=props;
   return (
     <div className="main">
@@ -181,7 +185,7 @@ const {Item}=props;
           </div>
           <div className="but1">
           
-          <button>SignOut</button>
+          <button onClick={handleSignOut}>SignOut</button>
          
           </div>
         </div>
