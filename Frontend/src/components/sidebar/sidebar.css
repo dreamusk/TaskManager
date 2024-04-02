@@ -56,7 +56,7 @@
     border-left: 2px solid black;
 }
 
-.taskGiven1,.taskGiven2,.taskGiven3,.taskGiven4,.taskGiven5{
+.taskGiven1,.taskGiven2,.taskGiven3,.taskGiven4,.taskGiven5,.taskGiven6{
     display: flex;
     gap: 1vw;
     /* border: rgb(70, 70, 70) solid 2px; */
@@ -102,6 +102,14 @@
     /* Change to the desired color */
 }
 .taskGiven5.clicked5 span{
+    color: rgb(1, 1, 1);
+    /* Change to the desired color */
+}
+.taskGiven6.clicked6 {
+    background-color: lightgray;
+    /* Change to the desired color */
+}
+.taskGiven6.clicked6 span{
     color: rgb(1, 1, 1);
     /* Change to the desired color */
 }

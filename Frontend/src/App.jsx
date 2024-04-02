@@ -15,6 +15,7 @@ import EmployeePerformance from "./components/manger/EmployeePerformance";
 import Dashboard from "./components/tasks/dashboard/Dashboard";
 import HoursEntry from "./components/employee/HoursEntry";
 import HoursLog from "./components/employee/HoursLog";
+import ProjectSubmitted from "./components/employee/ProjectSubmitted";
 function App() {
 
 
@@ -23,6 +24,7 @@ function App() {
       <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<MProtected Component={Register} />} />
+      <Route path="/ProjectSubmitted" element={<Protected Component={ProjectSubmitted} />} />
       <Route path="/employee" element={<Protected Component={Employee} />} />
       <Route path="/hoursEntry" element={<Protected Component={HoursEntry} />} />
       <Route path="/taskCompleted" element={<Protected Component={TaskCompleted} />} />

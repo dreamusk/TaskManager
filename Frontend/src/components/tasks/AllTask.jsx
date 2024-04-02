@@ -199,7 +199,7 @@ const [name,setName]=useState(null)
             <th>Task Id</th>
             <th>Team</th>
             <th>Description</th>
-            <th>Percenatge Completed</th>
+            <th>Completed %</th>
             <th>Start date</th>
             <th>Deadline</th>
             <th>Details</th>
@@ -316,7 +316,7 @@ const [name,setName]=useState(null)
             <th>Employee Id</th>
             <th>Name</th>
             <th>Hours Alloted</th>
-            <th>Percenatge Alloted</th>
+            <th>Alloted %</th>
             <th>Work Status</th>
             <th>Action</th>
           </tr>

@@ -13,7 +13,16 @@ function AsignTask() {
   const [hours_alloted, setHours_alloted] = useState("");
   const [deadline, setDeadline] = useState("");
   const [taskId, setTaskId] = useState("");
+  // var currentDate = new Date();
 
+// Get the current date components
+// new Date();
+var date = new Date();
+    var year = date.getFullYear();
+    var month = ('0' + (date.getMonth() + 1)).slice(-2); // Months are zero-based
+    var day = ('0' + date.getDate()).slice(-2);
+    const start_date= year + '-' + month + '-' + day;
+console.log(start_date)
   const handleSubmit = async () => {
     // Form validation checks
     const mId = localStorage.getItem('eId');
@@ -33,10 +42,14 @@ function AsignTask() {
       manager_id: mId,
       team,
       employees,
-      start_date: "2024-03-25T17:00:00Z",
+      start_date,
       deadline
     };
     console.log(data)
+    if(start_date>deadline){
+      alert('Deadline Must  be After the start date');
+      return;
+    }
     try {
       let r=await fetch(`${server}/api/employee/eid/${employee_id}/`)
       r=await r.json();
