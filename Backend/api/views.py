@@ -18,7 +18,7 @@ def welcome_pal(request):
 @api_view(['POST'])#Adding the task
 def taskAdd(request):
     data=request.data
-    print('task.koofd')
+    # print('task.koofd')
     tempTask=Task.objects.filter(task_id=data['task_id']).first()
     if(tempTask):
         for i in tempTask.employees:
@@ -54,10 +54,10 @@ def getTaskByEid(request, eId):
                 if(j['employee_id']==eId):
                     tempTasks.append(i)
         tasks=tempTasks
-        print(tasks)
+        # print(tasks)
         # Serialize the tasks
         serializer = TasksSerializer(tasks, many=True)
-        print(serializer.data)
+        # print(serializer.data)
         return Response(serializer.data)
     
     except Task.DoesNotExist:
@@ -71,7 +71,7 @@ def getTaskByMid(request, eId):
         # print(tasks)
         # Serialize the tasks
         serializer = TasksSerializer(tasks, many=True)
-        print(serializer.data)
+        # print(serializer.data)
         return Response(serializer.data)
     
     except Task.DoesNotExist:
@@ -86,7 +86,7 @@ def getTaskByMidCompleted(request, eId):
         # print(tasks)
         # Serialize the tasks
         serializer = TasksSerializer(tasks, many=True)
-        print(serializer.data)
+        # print(serializer.data)
         return Response(serializer.data)
     
     except Task.DoesNotExist:
@@ -102,7 +102,7 @@ def getTaskByMidReview(request, eId):
         # print(tasks)
         # Serialize the tasks
         serializer = TasksSerializer(tasks, many=True)
-        print(serializer.data)
+        # print(serializer.data)
         return Response(serializer.data)
     
     except Task.DoesNotExist:
@@ -210,14 +210,16 @@ def taskUpdate(request, tId):
 def taskReviewUpdate(request, eId):
     try:
         tasks=Task.objects.filter(manager_id=eId)
+        print(request.data['emp']['employee'])
         for i in tasks:
             for j in i.employees:
-                if(request.data['emp']['employees']['employee_id']==j['employee_id']):
-                    j['isComplete']=request.data['emp']['isComplete']
-                    j['isRejected']=request.data['emp']['isRejected']
-                    j['isWaited']=request.data['emp']['isWaited']
-                    j['feedback']=request.data['feedback']
-                    i.save()
+               if(request.data['emp']['employee']['employee_id']==j['employee_id']):
+                        j['isComplete']=request.data['emp']['isComplete']
+                        j['isWaited']=request.data['emp']['isWaited']
+                        j['isEmployeeT']=request.data['emp']['employee']['isEmployeeT']
+                        j['hours']=request.data['emp']['employee']['hours']
+                        i.save()     
+                
         
         for i in tasks:
             flag =1
@@ -274,7 +276,7 @@ def taskCompletedGet(request,eId):
 
         # Serialize the filtered tasks
         serializer = TaskCompletedSerializer(filtered_tasks, many=True)
-        print(serializer.data)
+        # print(serializer.data)
         return Response(serializer.data)
     except TaskCompleted.DoesNotExist:
         return Response(status=404)
@@ -295,41 +297,37 @@ def taskRejected(request):
 def taskUpdateByManager(request):
     data=request.data
     task=Task.objects.get(task_id=data['task_id'])#finding existing task
-    flag=1
-    if  task is not None:
-        for employee in task.employees:
-         if employee['employee_id'] == data['employee_id'] and task.team == data['team']:
-            flag = 0
-            task.task_id = data['task_id']
-            task.team = data['team']
-            task.description = data['description']
-            task.percentage_Completed = data['percentage_Completed']
-            task.start_date = data['start_date']
-            task.deadline = data['deadline']
-            task.save()
-    else:
-        employee=[]
-        employee.extend({"employee_id":data['employee_id'],"description":data['description'],"percentage_Completed":data['percentage_Completed'],"start_date":data['start_date'],"deadline":data['deadline'],"isComplete":'0',"isRejected":'0',"isWaited":'0',"isEmployeeT":'1',"hours":'0',"remark":''})
-        if(task.len()>0,task['team']==data['team']):
-            task.employees.extend({"employee_id":data['employee_id'],"description":data['description'],"percentage_Completed":data['percentage_Completed'],"start_date":data['start_date'],"deadline":data['deadline'],"isComplete":'0',"isRejected":'0',"isWaited":'0',"isEmployeeT":'1',"hours":'0',"remark":''})
-            task.save()
-        else:
-            Task.objects.create(
-            task_id=data['task_id'],
-            description=data['description'],
-            employees=employee,
-            team=data['team'],
-            manager_id=data['manager_id'],
-            start_date=data['start_date'],
-            deadline=data['deadline'],
-            ) 
+    task.task_id=data['tlid']
+    task.team=data['team']
+    task.description=data['description']
+    task.start_date=data['start_date']
+    task.deadline=data['deadline']
+    task.percentage_Completed=data['percentage_Completed']
+    
+    task.save()
+    # else:
+    #     employee=[]
+    #     employee.extend({"employee_id":data['employee_id'],"description":data['description'],"percentage_Completed":data['percentage_Completed'],"start_date":data['start_date'],"deadline":data['deadline'],"isComplete":'0',"isRejected":'0',"isWaited":'0',"isEmployeeT":'1',"hours":'0',"remark":''})
+    #     if(task.len()>0,task['team']==data['team']):
+    #         task.employees.extend({"employee_id":data['employee_id'],"description":data['description'],"percentage_Completed":data['percentage_Completed'],"start_date":data['start_date'],"deadline":data['deadline'],"isComplete":'0',"isRejected":'0',"isWaited":'0',"isEmployeeT":'1',"hours":'0',"remark":''})
+    #         task.save()
+    #     else:
+    #         Task.objects.create(
+    #         task_id=data['task_id'],
+    #         description=data['description'],
+    #         employees=employee,
+    #         team=data['team'],
+    #         manager_id=data['manager_id'],
+    #         start_date=data['start_date'],
+    #         deadline=data['deadline'],
+    #         ) 
             
     return Response({"message": "Task Added"}, status=status.HTTP_201_CREATED)
 
 @api_view(['POST'])
 def hoursAdd(request):
     data=request.data
-    print(data)
+    # print(data)
     Hours.objects.create(
     description=data['description'],
     employee_id=data['employee_id'],
@@ -347,7 +345,46 @@ def hoursGet(request,eId):
 
         # Serialize the filtered tasks
         serializer = HoursSerializer(filtered_tasks, many=True)
-        print(serializer.data)
+        # print(serializer.data)
         return Response(serializer.data)
     except Hours.DoesNotExist:
         return Response(status=404)
+    
+    
+@api_view(['DELETE'])
+def task_delete_by_manager(request, task_id):
+    try:
+        print(task_id)
+        task = Task.objects.get(task_id=task_id)
+    except Task.DoesNotExist:
+        return Response({"message": "Task not found"}, status=status.HTTP_404_NOT_FOUND)
+    
+    task.delete()
+    return Response({"message": "Task Deleted"}, status=status.HTTP_204_NO_CONTENT) 
+    
+@api_view(['post'])
+def employeeReviewEmployeeDetailEditByManager(request,task_id):
+      print("367")
+      task=Task.objects.get(task_id=task_id)
+      for i in task.employees:
+          if(i['employee_id']==request.data['eid']):
+              i['employee_id']=request.data['employee_id']
+              i['name']=request.data['name']
+              i['hours_alloted']=request.data['hours_alloted']
+              i['percentage_alloted']=request.data['percentage_alloted']
+              if(request.data['workStatus']=="Completed"):
+                  i['isComplete']="1"
+              else:
+                  i['isComplete']="0"
+        
+      task.save()
+      return Response({"message": "Task Updated"}, status=status.HTTP_201_CREATED)
+
+@api_view(['post'])
+def removeEmployeeFromTask(request,task_id):
+    task=Task.objects.get(task_id=task_id)
+    for i in task.employees:
+        if(i['employee_id']==request.data['eid']):
+            task.employees.remove(i)
+    task.save()
+    return Response({"message": "Task Updated"}, status=status.HTTP_201_CREATED)

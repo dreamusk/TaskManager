@@ -19,5 +19,8 @@ urlpatterns=[
     path('task/update/<str:tId>/',views.taskUpdate,name="task Updated"),
     path('hours/add/',views.hoursAdd,name="task Updated"),
     path('hours/getById/<str:eId>/',views.hoursGet,name="task Updated"),
+    path('task/deleteByManager/<str:task_id>/',views.task_delete_by_manager,name="task Updated"),
+    path('task/employeeReviewEmployeeDetailEditByManager/<str:task_id>/',views.employeeReviewEmployeeDetailEditByManager,name="task Updated"),
+    path('task/removeEmployeeFromTask/<str:task_id>/',views.removeEmployeeFromTask,name="Employee Removed"),
 
 ]

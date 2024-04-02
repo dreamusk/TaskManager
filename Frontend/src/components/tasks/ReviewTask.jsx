@@ -81,6 +81,7 @@ const ReviewTask = () => {
     let data = {
       emp:tasks[index],feedback:feedback
     }
+    console.log({data})
     if(select){data.emp["isWaited"]="0";
   data.emp["isComplete"]="1";
   data.emp["isRejected"]="0";
@@ -99,6 +100,8 @@ const ReviewTask = () => {
       body: JSON.stringify(data)
     })
     console.log({response})
+    if(response.ok)
+    window.location.reload();
     setSelect(false);
     setReject(false);
     closeModal1();
@@ -138,8 +141,8 @@ const ReviewTask = () => {
               <td>{task.employee.employee_id}</td>
               <td>{task.employee.name}</td>
               <td>{task.employee.percentage_alloted}</td>
-              <td>{task.employee.hours_alloted}</td>
-              {/* <td>{task.employee.hours}</td> */}
+             
+               <td>{task.employee.hours}</td> 
               <td>{task.start_date.split("T")[0]}</td>
               <td>{task.deadline.split("T")[0]}</td>
              

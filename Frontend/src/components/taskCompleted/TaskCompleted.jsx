@@ -59,7 +59,7 @@ const TaskCompleted = () => {
             <th>Percenatge Assigned</th>
             <th>Start date</th>
             <th>DeadLine</th>
-            <th>Remark</th>
+            {/* <th>Remark</th> */}
           </tr>
         </thead>
         <tbody>
@@ -74,7 +74,7 @@ const TaskCompleted = () => {
                   <td>{empData[index]?.percentage_alloted}</td>
               <td>{task.start_date.split("T")[0]}</td>
               <td>{task.deadline.split("T")[0]}</td>
-              <td>{empData[index]?.remark}</td>
+              {/* <td>{empData[index]?.remark}</td> */}
             </tr>
           ))}
         </tbody>

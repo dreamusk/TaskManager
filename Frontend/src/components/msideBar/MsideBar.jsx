@@ -171,17 +171,6 @@ let subtitle;
           </div>
         </div>
         </Link>
-        <Link to='/employeePerformance'>
-        <div className={`mtaskGiven4 ${clicked4 ? 'clicked4' : ''}`} onClick={handleClick4}>
-          <div className="mtaskGivenImage" id="sugg">
-          <img src={Graph} ></img>
-          </div>
-          <div className="mtaskGivenText">
-            <span>
-             Performance
-            </span>
-          </div>
-        </div></Link>
         <Link to='/register'>
         <div className={`mtaskGiven6 ${clicked6 ? 'clicked6' : ''}`} onClick={handleClick6}>
           <div className="mtaskGivenImage" id="sugg">
@@ -193,6 +182,19 @@ let subtitle;
             </span>
           </div>
         </div></Link>
+
+        <Link to='/employeePerformance'>
+        <div className={`mtaskGiven4 ${clicked4 ? 'clicked4' : ''}`} onClick={handleClick4}>
+          <div className="mtaskGivenImage" id="sugg">
+          <img src={Graph} ></img>
+          </div>
+          <div className="mtaskGivenText">
+            <span>
+             Performance
+            </span>
+          </div>
+        </div></Link>
+      
       </div>
       <div className="mnAndB">
       <div className="MNavcontainer">
