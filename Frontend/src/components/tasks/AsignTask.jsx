@@ -123,9 +123,9 @@ console.log(start_date)
             />
           </div> 
           <div className="frmd">
-            <label>Task Id</label>
+            <label>Project Id</label>
             <input
-              placeholder="Task Id"
+              placeholder="Project Id"
               value={taskId}
               onChange={(e) => setTaskId(e.target.value)}
             />

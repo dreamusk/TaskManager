@@ -120,7 +120,7 @@ const ReviewTask = () => {
         <thead>
           <tr>
             <th>SrNo:</th>
-            <th>Task Id</th>
+            <th>Project  Id</th>
             <th>Project</th>
             <th>Employee Id</th>
             <th>Name</th>

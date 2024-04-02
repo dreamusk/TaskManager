@@ -68,7 +68,7 @@ const CompletedTask = () => {
         <thead>
           <tr>
             <th>SrNo:</th>
-            <th>Task Id</th>
+            <th>Project Id</th>
             <th>Team</th>
             <th>Description</th>
             <th>Percenatge Completed</th>

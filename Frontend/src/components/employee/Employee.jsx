@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./employee.css";
 import { server } from "../../server";
 import done from '../../assets/done.png'
+import Np from '../../assets/Np.png'
 const Employee = () => {
   const [tasks, setTasks] = useState([]);
   const [hours,setHours]=useState(0);
@@ -50,8 +51,16 @@ const Employee = () => {
   }, []);
 
   return (
-    <div className="Econtainer">
-      <table>
+    
+    <div className="Econtainer empty">
+      {tasks.length === 0 ? (
+      
+      <>
+      <div className="BgimgNoProject"></div>
+      </>
+      ) :(
+        <>
+        <table>
         <thead>
           <tr>
             <th>SrNo:</th>
@@ -96,7 +105,9 @@ const Employee = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table></>
+      )}
+      
     </div>
   );
 };

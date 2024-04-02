@@ -196,7 +196,7 @@ const [name,setName]=useState(null)
         <thead>
           <tr>
             <th>SrNo:</th>
-            <th>Task Id</th>
+            <th>Project Id</th>
             <th>Team</th>
             <th>Description</th>
             <th>Completed %</th>
@@ -270,6 +270,7 @@ const [name,setName]=useState(null)
                   </div>
                 </div>
               </td>
+              
               <td>
                 <div className="btn29">
                   {(edit===true&&index===indx)?(
